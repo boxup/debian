@@ -82,6 +82,7 @@
     {
       "environment_vars": [
         "CM={{user `cm`}}",
+        "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",
         "DOCKER={{user `docker`}}",
         "UPDATE={{user `update`}}",
@@ -116,7 +117,7 @@
       {
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
-        "artifact": "hashicorp/debian-8.3",
+        "artifact": "baseboxorg/debian-8.3",
         "artifact_type": "vagrant.box",
         "metadata": {
           "created_at": "{{timestamp}}"
@@ -124,6 +125,7 @@
       }
     ],
   "variables": {
+    
     "cm": "nocm",
     "cm_version": "",
     "cpus": "1",
