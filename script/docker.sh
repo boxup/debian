@@ -25,7 +25,7 @@ docker_package_install() {
     # Docker package does not current configure daemon to start on boot
     # for Ubuntu 15.04 and up
     # if [[ "${UBUNTU_MAJOR_VERSION}" -gt "14" ]]; then
-    #  sudo systemctl enable docker
+    systemctl enable docker
     # fi
 
     # reboot
