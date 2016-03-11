@@ -144,6 +144,7 @@
     "cm": "nocm",
     "cm_version": "",
     "cpus": "1",
+    "custom_script": "."
     "disk_size": "65536",
     "docker": "false",
     "ftp_proxy": "{{env `ftp_proxy`}}",
@@ -156,7 +157,7 @@
     "iso_path": "/Volumes/drive/datahub/backup/OSImage/Debian",
     "iso_name": "debian-8.3.0-amd64-DVD-1.iso",
     "iso_url": "http://cdimage.debian.org/cdimage/release/8.3.0/amd64/iso-dvd/debian-8.3.0-amd64-DVD-1.iso",
-    "memory": "384",
+    "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "debian",
     "preseed": "preseed-jessie.cfg",
