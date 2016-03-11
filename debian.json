@@ -33,7 +33,7 @@
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
         "memsize": "{{ user `memory` }}",
-        "numvcpus": "{{ user `cpus` }}"
+        "numvcpus": "{{ user `cpus` }}",
         "cpuid.coresPerSocket": "1"
       }
     },
@@ -102,7 +102,6 @@
         "script/vagrant.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
-        "script/parallels.sh",
         "script/docker.sh",
         "script/cmtool.sh",
         "script/motd.sh",
@@ -126,7 +125,7 @@
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "vmware_desktop",
-        "version": "0.3.0"
+        "version": "0.3.1"
       }
     },
     {
@@ -136,7 +135,7 @@
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "virtualbox",
-        "version": "0.3.0"
+        "version": "0.3.1"
         }
     }
   ]
