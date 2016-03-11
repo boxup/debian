@@ -113,18 +113,33 @@
     }
   ],
   "post-processors": [
-      {
-        "type": "atlas",
-        "token": "{{user `ATLAS_TOKEN`}}",
-        "artifact": "baseboxorg/debian-8.3",
-        "artifact_type": "vagrant.box",
-        "metadata": {
-          "created_at": "{{timestamp}}"
-        }
+  [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false
+    },
+    {
+      "type": "atlas",
+      "only": ["vmware-iso"],
+      "artifact": "baseboxorg/debian-8.3.0",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "vmware_desktop",
+        "version": "0.1.0"
       }
-    ],
+    },
+    {
+      "type": "atlas",
+      "only": ["virtualbox-iso"],
+      "artifact": "baseboxorg/debian-8.3.0",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "virtualbox",
+        "version": "0.1.0"
+        }
+    }
+  ],
   "variables": {
-    "token": "{{env `ATLAS_TOKEN`}}",
     "cm": "nocm",
     "cm_version": "",
     "cpus": "1",
