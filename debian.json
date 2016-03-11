@@ -112,6 +112,17 @@
       "type": "shell"
     }
   ],
+  "post-processors": [
+      {
+        "type": "atlas",
+        "token": "{{user `atlas_token`}}",
+        "artifact": "hashicorp/debian-8.3",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "created_at": "{{timestamp}}"
+        }
+      }
+    ],
   "variables": {
     "cm": "nocm",
     "cm_version": "",
@@ -143,4 +154,5 @@
     "vmware_guest_os_type": "debian8-64"
   }
 }
+
 
