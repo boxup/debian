@@ -7,8 +7,20 @@ set -eux
 #
 # For example:
 
-apt-get install -y cachefilesd
+echo '
+deb http://httpredir.debian.org/debian jessie main
+deb-src http://httpredir.debian.org/debian jessie main
 
+deb http://security.debian.org/ jessie/updates main contrib
+deb-src http://security.debian.org/ jessie/updates main contrib
+
+# jessie-updates, previously known as 'volatile'
+deb http://httpredir.debian.org/debian jessie-updates main contrib
+deb-src http://httpredir.debian.org/debian jessie-updates main contrib' > /etc/apt/sources.list
+
+apt-get update
+
+apt-get install -y cachefilesd
 
 echo "Setting Timezone & Locale to KL & en_US.UTF-8"
 ln -sf /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
