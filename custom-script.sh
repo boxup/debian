@@ -8,6 +8,12 @@ set -eux
 # For example:
 
 echo '
+#
+
+# deb cdrom:[Debian GNU/Linux 8.3.0 _Jessie_ - Official amd64 DVD Binary-1 20160123-19:03]/ jessie contrib main
+
+#deb cdrom:[Debian GNU/Linux 8.3.0 _Jessie_ - Official amd64 DVD Binary-1 20160123-19:03]/ jessie contrib main
+
 deb http://httpredir.debian.org/debian jessie main
 deb-src http://httpredir.debian.org/debian jessie main
 
