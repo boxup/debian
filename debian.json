@@ -115,7 +115,7 @@
   "post-processors": [
       {
         "type": "atlas",
-        "token": "{{env `atlas_token`}}",
+        "token": "{{user `ATLAS_TOKEN`}}",
         "artifact": "baseboxorg/debian-8.3",
         "artifact_type": "vagrant.box",
         "metadata": {
@@ -124,6 +124,7 @@
       }
     ],
   "variables": {
+    "token": "{{env `ATLAS_TOKEN`}}",
     "cm": "nocm",
     "cm_version": "",
     "cpus": "1",
