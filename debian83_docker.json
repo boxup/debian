@@ -183,11 +183,10 @@
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "true",
-    "version": "0.3.5",
+    "version": "1.0.0",
     "virtualbox_guest_os_type": "Debian_64",
-    "vm_name": "debian-8.3.0",
+    "vm_name": "debian-8.3.0-docker",
     "_comment": "Build with `packer build -var-file=debian83.json debian.json`",
     "vmware_guest_os_type": "debian8-64"
   }
 }
-
