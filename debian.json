@@ -24,7 +24,7 @@
         "{{ user `iso_url` }}"
       ],
       "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_wait_timeout": "10000s",
@@ -33,8 +33,7 @@
       "vm_name": "{{ user `vm_name` }}",
       "vmx_data": {
         "memsize": "{{ user `memory` }}",
-        "numvcpus": "{{ user `cpus` }}",
-        "cpuid.coresPerSocket": "1"
+        "numvcpus": "{{ user `cpus` }}"
       }
     },
     {
@@ -62,7 +61,7 @@
         "{{ user `iso_url` }}"
       ],
       "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
       "ssh_wait_timeout": "10000s",
@@ -77,6 +76,53 @@
       ],
       "virtualbox_version_file": ".vbox_version",
       "vm_name": "{{ user `vm_name` }}"
+    },
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "install",
+        " auto",
+        " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
+        " debian-installer=en_US",
+        " locale=en_US",
+        " keymap=us",
+        " netcfg/get_hostname=vagrant",
+        " netcfg/get_domain=vm ",
+        "<enter>"
+      ],
+      "disk_size": "{{ user `disk_size` }}",
+      "guest_os_type": "{{ user `parallels_guest_os_type` }}",
+      "http_directory": "http",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],
+      "output_directory": "output-{{ user `vm_name` }}-parallels-iso",
+      "parallels_tools_flavor": "lin",
+      "prlctl": [
+        [
+          "set", "{{.Name}}", "--memsize", "{{ user `memory` }}"
+        ],
+        [
+          "set", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+        ]
+      ],
+      "prlctl_version_file": ".prlctl_version",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "10000s",
+      "type": "parallels-iso",
+      "vm_name": "{{ user `vm_name` }}"
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": false,
+      "output": "box/{{.Provider}}/{{ user `vm_name` }}-{{ user `cm` }}{{ user `cm_version` }}-{{ user `version` }}.box",
+      "type": "vagrant"
     }
   ],
   "provisioners": [
@@ -112,34 +158,7 @@
       "type": "shell"
     }
   ],
-  "post-processors": [
-  [
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false
-    },
-    {
-      "type": "atlas",
-      "only": ["vmware-iso"],
-      "artifact": "baseboxorg/debian-8.3.0",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "vmware_desktop",
-        "version": "0.3.6"
-      }
-    },
-    {
-      "type": "atlas",
-      "only": ["virtualbox-iso"],
-      "artifact": "baseboxorg/debian-8.3.0",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "virtualbox",
-        "version": "0.3.6"
-        }
-    }
-  ]
-  ],
+
   "variables": {
     "cm": "nocm",
     "cm_version": "",
@@ -157,14 +176,14 @@
     "iso_path": "/Volumes/drive/datahub/backup/OSImage/Debian",
     "iso_name": "debian-8.3.0-amd64-DVD-1.iso",
     "iso_url": "http://cdimage.debian.org/cdimage/release/8.3.0/amd64/iso-dvd/debian-8.3.0-amd64-DVD-1.iso",
-    "memory": "386",
+    "memory": "384",
     "no_proxy": "{{env `no_proxy`}}",
     "preseed": "preseed-jessie.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "true",
-    "version": "0.3.6",
+    "version": "1.0.0",
     "virtualbox_guest_os_type": "Debian_64",
     "vm_name": "debian-8.3.0",
     "_comment": "Build with `packer build -var-file=debian83.json debian.json`",
